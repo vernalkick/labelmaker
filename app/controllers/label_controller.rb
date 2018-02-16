@@ -3,6 +3,7 @@ class LabelController < ShopifyApp::AuthenticatedController
     order_id = params[:id]
     @order = ShopifyAPI::Order.find(order_id)
     @pdf_url = "/pdf.pdf?id=#{order_id}"
+    @order_url = "#{params[:protocol]}#{params[:shop]}/admin/orders/#{order_id}"
 
 #     html = <<-END
 # <p>
