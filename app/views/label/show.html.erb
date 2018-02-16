@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="https://sdks.shopifycdn.com/polaris/1.11.0/polaris.min.css" />
+<style>
+  #pdf {
+    opacity: 0;
+    display: none;
+  }
+</style>
+<script>
+function isLoaded()
+{
+  var getMyFrame = document.getElementById("pdf");
+  getMyFrame.focus();
+  getMyFrame.contentWindow.print();
+}
+</script>
+
+<div class="Polaris-Page Polaris-Page--singleColumn">
+  <div class="Polaris-Page__Header">
+    <div class="Polaris-Page__Title">
+      <h1 class="Polaris-DisplayText Polaris-DisplayText--sizeLarge">Label for order #1234</h1>
+    </div>
+    <div class="Polaris-Page__Actions"></div>
+  </div>
+  <div class="Polaris-Page__Content">
+    <div class="Polaris-Card">
+      <div class="Polaris-Card__Header">
+        <h2 class="Polaris-Heading">Shipping address</h2>
+      </div>
+      <div class="Polaris-Card__Section">
+        <p>
+          <%= @order.shipping_address.name %><br>
+          <%= @order.shipping_address.address1 %><br>
+          <% if @order.shipping_address.address2 != nil %>
+            <%= @order.shipping_address.address2 %><br>
+          <% end %>
+          <%= @order.shipping_address.city %> <%= @order.shipping_address.province_code %> <%= @order.shipping_address.zip %><br>
+          <%= @order.shipping_address.country %>
+        </p>
+        <iframe src="<%= @pdf_url %>" id="pdf" name="pdf" frameborder="0" ></iframe>
+        <button type="button" class="Polaris-Button Polaris-Button--primary Polaris-Button--sizeLarge Polaris-Button--fullWidth" onclick="isLoaded()">
+          <span class="Polaris-Button__Content">Print label</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
