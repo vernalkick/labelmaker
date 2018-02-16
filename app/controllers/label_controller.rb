@@ -39,6 +39,7 @@ class LabelController < ShopifyApp::AuthenticatedController
     order_id = params[:id]
     @order = ShopifyAPI::Order.find(order_id)
     @address = formatAddress(@order.shipping_address)
+    @size = @order.shipping_address.address2.blank? ? 'small' : 'large'
 
     margins = {
       top: 0,
