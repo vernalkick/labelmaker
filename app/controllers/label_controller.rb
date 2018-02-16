@@ -27,7 +27,7 @@ class LabelController < ShopifyApp::AuthenticatedController
     string = ''
     string << address.name + '<br>'
     string << address.address1 + '<br>'
-    if address.address2 != nil
+    if !address.address2.blank?
       string << address.address2 + '<br>'
     end
     string << "#{address.city} #{address.province_code} #{address.zip}<br>"
